@@ -3,31 +3,63 @@
 
 using namespace std;
 
-Heap::Heap() {}
-
-void Heap::buildHeap(int* intputArray)
-{ 
-  for (int i = (size/2) - 1; i < 0; i - 1)
+Heap::Heap(int* newArray, int newSize)
+{
+  capacity = 100;
+  size = newSize;
+  arrayHeap = new int[capacity];
+  
+  for (int i = 0; i < capacity; i++)
     {
-      int leftchild = (i*2) + 1;
-      int rightchild = (i*2) + 2;
-      int largest = inputArray[i];
-      if (leftchild < size && leftchild > largest)
+      if (i < newSize)
 	{
-	  largest = leftchild;
+	  arrayHeap[i] = newArray[i];
 	}
-      if (right child < size && rightchild > largest)
+      else
 	{
-	  largest = rightchild;
-	}
-      if (largest != intputArray[i])
-	{
-	  int temp = largest;
-	  largest = inputArray[i];
-	  inputArray[i] = temp;
+	  arrayHeap[i] = 0;
 	}
     }
   
 }
 
+void Heap::buildHeap()
+{
+  for (int i = (size/2) - 1; i >= 0; i = i - 1)
+    {
+      siftDown(i);
+    }
+  
+}
+void Heap::siftDown(int index)
+{
+  int leftchild = (index*2) + 1;
+  int rightchild = (index*2) + 2;
+  int largest = index;
+  if (leftchild < size && arrayHeap[leftchild] > arrayHeap[largest])
+    {
+      largest = leftchild;
+    }
+  if (rightchild < size && arrayHeap[rightchild] > arrayHeap[largest])
+    {
+      largest = rightchild;
+    }
+  if (largest != index)
+    {
+      int temp = arrayHeap[largest];
+      arrayHeap[largest] = arrayHeap[index];
+      arrayHeap[index] = temp;
+      siftDown(largest);
+    }
+  
+}
+
+void Heap::printHeap()
+{
+  for (int i = 0; i < size; i++)
+    {
+      cout << arrayHeap[i] << " ";
+    }
+  cout << endl;
+}
 Heap::~Heap() {}

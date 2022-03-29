@@ -8,8 +8,12 @@ class Heap
 {
 
  public:
-  void buildHeap(int* inputArray);
-
+  Heap(int* newArray, int newSize);
+  void buildHeap();
+  void siftDown(int index);
+  void printHeap();
+  ~Heap();
+  
  private:
   int* arrayHeap;
   int capacity;

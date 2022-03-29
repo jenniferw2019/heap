@@ -2,6 +2,7 @@
 #include <cstring>
 #include <cctype>
 #include <cstdlib>
+#include "heap.h"
 
 using namespace std;
 
@@ -12,6 +13,7 @@ int main()
   int spaceCounter = 0;
   int tokenCounter = 0;
   int* itemArray;
+  Heap* newHeap;
   cout << "Do you wanted to enter numbers with console or enter a file name?" << endl;
   cout << "Type CONSOLE to enter numbers or FILE to enter a filename" << endl;
   cin.get(option, 20);
@@ -26,7 +28,7 @@ int main()
       int a = 0;
       while (strInput[a] != '\0')
 	{
-	  if (input[a] == ' ')
+	  if (strInput[a] == ' ')
 	    {
 	      spaceCounter++;
 	    }
@@ -43,5 +45,9 @@ int main()
 	  token = strtok(NULL, " ");
 	  a = a + 1;
 	}
+      newHeap = new Heap(itemArray, tokenCounter);
+      
+      newHeap->buildHeap();
+      newHeap->printHeap();
     }
 }
