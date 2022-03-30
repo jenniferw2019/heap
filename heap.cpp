@@ -62,4 +62,23 @@ void Heap::printHeap()
     }
   cout << endl;
 }
+
+void Heap::visualizeHeap(int index, int level)
+{
+  
+  if (index < size)
+    {
+      //left subtree
+      visualizeHeap((2*index) + 1, level + 1);
+      for (int i = 0; i < level; i++)
+	{
+	  cout << '\t';
+	}
+      cout << arrayHeap[index] << endl;
+      //right subtree
+      visualizeHeap((2*index) + 2, level + 1);
+    }
+  
+  
+}
 Heap::~Heap() {}

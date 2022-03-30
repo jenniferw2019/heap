@@ -49,5 +49,7 @@ int main()
       
       newHeap->buildHeap();
       newHeap->printHeap();
+      cout << "visualize the tree... " << endl;
+      newHeap->visualizeHeap(0, 0);
     }
 }

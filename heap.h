@@ -12,6 +12,7 @@ class Heap
   void buildHeap();
   void siftDown(int index);
   void printHeap();
+  void visualizeHeap(int index, int level);
   ~Heap();
   
  private:
