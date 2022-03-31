@@ -81,4 +81,19 @@ void Heap::visualizeHeap(int index, int level)
   
   
 }
+
+int Heap::peak()
+{
+  return arrayHeap[0];
+}
+
+void Heap::removeItem()
+{
+  int lastTemp = arrayHeap[size-1];
+  arrayHeap[0] = lastTemp;
+  arrayHeap[size-1] = 0;
+  size = size - 1;
+
+  siftDown(0);
+}
 Heap::~Heap() {}
