@@ -56,6 +56,7 @@ void Heap::siftDown(int index)
 
 void Heap::printHeap()
 {
+  //cout << size << endl;
   for (int i = 0; i < size; i++)
     {
       cout << arrayHeap[i] << " ";
@@ -95,5 +96,38 @@ void Heap::removeItem()
   size = size - 1;
 
   siftDown(0);
+}
+
+void Heap::addHeap(int newNumber)
+{
+  arrayHeap[size] = newNumber;
+  size = size + 1;
+  siftUp(size - 1);
+  printHeap();
+}
+
+void Heap::siftUp(int index)
+{
+  int parent = (index - 1)/2;
+  int largest = index;
+
+  if (arrayHeap[parent] < arrayHeap[largest])
+    { 
+      int temp = arrayHeap[largest];
+      arrayHeap[largest] = arrayHeap[parent];
+      arrayHeap[parent] = temp;
+
+      largest = parent;
+      
+      if (parent != 0)
+	{
+	  siftUp(largest);
+	}
+    }
+}
+
+int Heap::getSize()
+{
+  return size;
 }
 Heap::~Heap() {}

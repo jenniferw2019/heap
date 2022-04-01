@@ -15,6 +15,9 @@ class Heap
   void visualizeHeap(int index, int level);
   int peak();
   void removeItem();
+  void addHeap(int newNumber);
+  void siftUp(int index);
+  int getSize();
   ~Heap();
   
  private:
