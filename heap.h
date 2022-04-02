@@ -1,3 +1,4 @@
+//header file for heap
 #ifndef HEAP_H
 #define HEAP_H
 #include <iostream>
@@ -21,6 +22,7 @@ class Heap
   ~Heap();
   
  private:
+  //variables
   int* arrayHeap;
   int capacity;
   int size;

@@ -1,3 +1,4 @@
+//cpp file for heap
 #include <iostream>
 #include "heap.h"
 
@@ -31,6 +32,8 @@ void Heap::buildHeap()
     }
   
 }
+
+//swap number too small with largest child, move down the tree
 void Heap::siftDown(int index)
 {
   int leftchild = (index*2) + 1;
@@ -64,6 +67,7 @@ void Heap::printHeap()
   cout << endl;
 }
 
+//print out heap as a tree in console
 void Heap::visualizeHeap(int index, int level)
 {
   
@@ -106,6 +110,7 @@ void Heap::addHeap(int newNumber)
   printHeap();
 }
 
+//swap number too large with its parent, moving larger values up the tree
 void Heap::siftUp(int index)
 {
   int parent = (index - 1)/2;

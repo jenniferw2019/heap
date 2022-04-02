@@ -1,3 +1,10 @@
+/*
+This program creates a max heap. User can enter up to 100 numbers separated by spaces in the console or use a file. 
+The user can add a number into the heap, visualize the tree by displaying it in the console, 
+and removing each element and printing out an output array.
+Author: Jennifer Wang
+4/1/22
+ */
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -10,6 +17,7 @@ using namespace std;
 
 int main()
 {
+  //variables
   char strInput[100];
   char option[20];
   char option2[20];
@@ -22,11 +30,12 @@ int main()
   int* outputArray;
   bool runProgram = true;
     
-  cout << "Do you wanted to enter numbers with console or enter a file name?" << endl;
-  cout << "Type CONSOLE to enter numbers or FILE to enter a filename" << endl;
+  cout << "Do you wanted to enter numbers with console or through a file?" << endl;
+  cout << "Type CONSOLE to enter numbers or FILE to get numbers from file" << endl;
   cin.get(option, 20);
   cin.get();
-  
+
+  //if "CONSOLE" then prompt user to add in numbers from console
   if (strcmp(option, "CONSOLE") == 0)
     {
       cout << "Enter up to 100 numbers with spaces" << endl;
@@ -56,13 +65,13 @@ int main()
       newHeap = new Heap(itemArray, tokenCounter);
       
       newHeap->buildHeap();
-      newHeap->printHeap();
-      //cout << "visualize the tree... " << endl;
-      //newHeap->visualizeHeap(0, 0);
+      //newHeap->printHeap();
+      
     }
-
+  //if "FILE" then gets numbers from a pre-made file
   if (strcmp(option, "FILE") == 0)
     {
+      //read in numbers from file
       ifstream file ("file.txt", ifstream::in);
       if (file)
 	{
@@ -83,6 +92,7 @@ int main()
 	  cerr << "no such file named file.txt" << endl;
 	}
       spaceCounter = 0;
+      //count the number of token 
       for (int i = 0; i < length; i++)
 	{
 	  if (buffer[i] == ' ')
@@ -92,8 +102,7 @@ int main()
 	  tokenCounter = spaceCounter + 1;
 	}
 
-      //cout << "token counter" << tokenCounter << endl;
-
+      //change array value to integer 
       itemArray = new int[tokenCounter];
       int a = 0;
       char* token;
@@ -108,17 +117,19 @@ int main()
       newHeap = new Heap(itemArray, tokenCounter);
 
       newHeap->buildHeap();
-      newHeap->printHeap();
+      //newHeap->printHeap();
       
     }
 
   
   while (runProgram == true)
     {
+      //user can choose to add to heap, visualize the tree, or print out output array
       cout << "Type ADD, VISUALIZE, or OUTPUT" << endl;
       cin.get(option2, 20);
       cin.get();
 
+      //if "ADD" then prompt user to enter a new integer and add to heap
       if (strcmp(option2, "ADD") == 0)
 	{
 	  cout << "Enter a int value" << endl;
@@ -128,11 +139,15 @@ int main()
 
 	  newHeap->addHeap(temp);
 	}
+
+      //if "VISUALIZE" then the tree is visually represent in console
       if (strcmp(option2, "VISUALIZE") == 0)
 	{
-	  cout << "visualize the tree..." << endl;
+	  cout << "visualizing the tree..." << endl;
 	  newHeap->visualizeHeap(0, 0);
 	}
+
+      //if "OUTPUT" then each element from heap is removed and added to output and output is printed
       if (strcmp(option2, "OUTPUT") == 0)
 	{
 	  int tempSize = newHeap->getSize();
